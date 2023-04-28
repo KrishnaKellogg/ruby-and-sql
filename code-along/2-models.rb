@@ -23,6 +23,10 @@ new_company.save
 
 puts "There are #{Company.all.count} companies in the table."
 
+
+
+# 2. insert new rows in companies table
+
 new_company_2 = Company.new
 new_company_2["name"] = "Amazon"
 new_company_2["city"] = "Seattle"
@@ -30,14 +34,25 @@ new_company_2["state"] = "WA"
 new_company_2.save
 puts "Amazon created!"
 
-# 2. insert new rows in companies table
+puts Company.all.inspect
 
 # 3. query companies table to find all row with California company
+#.where always provides an array
+
+ca_companies = Company.where({"state" => "CA"})
+puts ca_companies.inspect
 
 # 4. query companies table to find single row for Apple
+#.find_by just provides the one row instead 
+
+apple = Company.find_by({"name" => "Apple"})
+puts apple.inspect
 
 # 5. read a row's column value
 
 # 6. update a row's column value
+apple["name"] = "Apple Computer, Inc"
+apple.save
+puts apple.inspect
 
 # 7. delete a row
